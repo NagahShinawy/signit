@@ -17,16 +17,16 @@ def create_app(config_filename):
     """
     app = Flask(__name__)
     app.config.from_object(config_filename)
-    configure_extensions(app)
+    # configure_extensions(app)
     register_blueprints(app)  # domain/api/
 
     return app
 
 
-def configure_extensions(app):
-    """configure flask extensions"""
-    # db.init_app(app)
-    # migrate.init_app(app, db)
+# def configure_extensions(app):
+#     """configure flask extensions"""
+#     # db.init_app(app)
+#     # migrate.init_app(app, db)
 
 
 def register_blueprints(app):
