@@ -2,10 +2,9 @@
 easy import of all resources of v1
 """
 
-from .user import UserResource, UserUpdateResource, UserDeleteResource
+from .user import UserResource, UserCreateResource
 
 __all__ = [
     "UserResource",
-    "UserUpdateResource",
-    "UserDeleteResource",
+    "UserCreateResource",
 ]

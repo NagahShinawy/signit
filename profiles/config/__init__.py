@@ -16,6 +16,6 @@ DB_USER = os.environ.get("DB_USER")
 DB_PASSWORD = os.environ.get("DB_PASSWORD")
 SQLALCHEMY_DATABASE_URI = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, "db_repository")
-SECRET_KEY = "changeme"  # for generating jwt token
+SECRET_KEY = "changeme"
 SWAGGER_URL = "/swagger"
 API_URL = "/static/swagger/swagger.json"
