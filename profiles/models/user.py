@@ -25,4 +25,4 @@ class User(db.Model, CRUDMixin):
         self.password = pwd_context.hash(self.password)
 
     def __repr__(self):
-        return f"<User {self.username}>"
+        return f"<User {self.id}-{self.fullname}>"

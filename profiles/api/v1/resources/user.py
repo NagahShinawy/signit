@@ -9,6 +9,7 @@ from profiles.api.v1.schemas import UserSchema
 from profiles.commons import utils
 from profiles.commons.crud import CRUDMixin
 from profiles.models import User
+from profiles.config.logs import logger
 
 
 class UserMixin:
@@ -23,6 +24,7 @@ class UserResource(Resource, UserMixin, CRUDMixin):
 
     def get(self, pk):
         user = self.model.query.get_or_404(pk)
+        logger.info(f"user '%s' found", user)
         return self.schema(exclude=self.schema.EXCLUDE_FOR_DUMP).dump(user)
 
     def patch(self):
@@ -30,7 +32,9 @@ class UserResource(Resource, UserMixin, CRUDMixin):
 
     def delete(self, pk):
         user = User.query.get_or_404(pk)
+        logger.info(f"user '%s' found", user)
         super().delete(user)
+        logger.info(f"user '%s' deleted successfully", user)
         return "", HTTPStatus.NO_CONTENT
 
 
@@ -41,11 +45,14 @@ class UserCreateResource(Resource, UserMixin, CRUDMixin):
 
     def post(self):
         json_data = utils.get_json_from_request(request)
+        logger.info(f"getting data %s", json_data)
         try:
 
             user = self.schema().load(json_data)
         except ValidationError as errors:
+            logger.error(f"bad params [%s]", errors.messages)
             return {"errors": errors.messages}, HTTPStatus.BAD_REQUEST
 
         self.add(user)
+        logger.info(f"user '%s' saved successfully", user)
         return self.schema(exclude=self.schema.EXCLUDE_FOR_DUMP).dump(user)
