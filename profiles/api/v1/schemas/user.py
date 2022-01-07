@@ -1,13 +1,21 @@
 """
 handle user scheme
 """
-from marshmallow import validate
+from marshmallow import Schema, ValidationError, fields, validate, validates
+from profiles.commons.validation import validate_email
 from profiles.extensions import ma
+from profiles.models import User
+# from profiles.extensions import db
 
 
-class UserSchema(ma.Schema):
-    email = ma.String(required=True, validate=[validate.Email()])
-    username = ma.String(required=True)
+class UserSchema(ma.SQLAlchemyAutoSchema):
+    EXCLUDE_FOR_DUMP = ("password", )
+    EXCLUDE_FOR_LOAD = ("id", "created")
+
+    email = fields.Email(validate=[validate_email])
+    password = fields.String(required=True)
 
     class Meta:
-        fields = ("_id", "username", "first_name", "last_name", "email")
+        model = User
+        load_instance = True
+
