@@ -8,7 +8,6 @@ from flask_restful import Api
 from profiles.api.v1.resources import (
     UserResource,
     UserCreateResource,
-
 )
 
 blueprint = Blueprint("api", __name__, url_prefix="/api/v1")

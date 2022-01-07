@@ -12,4 +12,3 @@ def validate_email(value):
     if user:
         raise ValidationError(EmailAlreadyExistError.message)
     return value
-

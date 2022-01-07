@@ -6,6 +6,7 @@ from flask import request
 from flask_restful import Resource
 from marshmallow import ValidationError
 from sqlalchemy import engine
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import scoped_session, sessionmaker
 from profiles.api.v1.schemas import UserSchema
 from profiles.commons import utils
@@ -45,7 +46,7 @@ class UserCreateResource(Resource, UserMixin, CRUDMixin):
         json_data = utils.get_json_from_request(request)
         try:
 
-            user = self.schema().load(json_data, session=session)
+            user = self.schema().load(json_data)
         except ValidationError as errors:
             return {"errors": errors.messages}, HTTPStatus.BAD_REQUEST
 
