@@ -2,5 +2,6 @@
 constants data
 """
 
-NO_DATA_PROVIDED = "No payload data provided"
-INVALID_DATA = "Invalid data"
+# REGEX
+PWD_REGEX = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,50}$"
+FULLNAME_REGX = r"^[a-zA-Z]{4,30}$"

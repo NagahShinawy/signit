@@ -18,7 +18,7 @@ class UserMixin:
 
 class UserResource(Resource, UserMixin, CRUDMixin):
     """
-    user apis [ get, patch, delete ]
+    user apis [ GET, PATCH, DELETE ]
     """
 
     def get(self, pk):
@@ -36,7 +36,7 @@ class UserResource(Resource, UserMixin, CRUDMixin):
 
 class UserCreateResource(Resource, UserMixin, CRUDMixin):
     """
-    user create api [ post ]
+    user create api [ POST ]
     """
 
     def post(self):
