@@ -27,6 +27,7 @@ def configure_app(app):
     app.config.from_object("profiles.config.develop")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+    app.url_map.strict_slashes = False
 
 
 def configure_extensions(app):
