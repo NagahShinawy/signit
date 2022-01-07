@@ -12,8 +12,7 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
     EXCLUDE_FOR_DUMP = ("password",)
     EXCLUDE_FOR_LOAD = ("id", "created")
 
-    # fullname = fields.String(validate=validate.Range(min=5, max=50))
-    fullname = fields.String()
+    fullname = fields.String(required=True)
     email = fields.Email(validate=[validate_email])
     password = fields.String(
         required=True,

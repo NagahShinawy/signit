@@ -5,15 +5,10 @@ from http import HTTPStatus
 from flask import request
 from flask_restful import Resource
 from marshmallow import ValidationError
-from sqlalchemy import engine
-from sqlalchemy.exc import IntegrityError
-from sqlalchemy.orm import scoped_session, sessionmaker
 from profiles.api.v1.schemas import UserSchema
 from profiles.commons import utils
 from profiles.commons.crud import CRUDMixin
 from profiles.models import User
-
-session = scoped_session(sessionmaker(bind=engine))
 
 
 class UserMixin:
@@ -21,20 +16,22 @@ class UserMixin:
     schema = UserSchema
 
 
-class UserResource(Resource, UserMixin):
+class UserResource(Resource, UserMixin, CRUDMixin):
     """
     user apis [ get, patch, delete ]
     """
 
-    def get(self, _id):
-        user = self.model.query.get_or_404(_id)
-        return self.schema().dump(user)
+    def get(self, pk):
+        user = self.model.query.get_or_404(pk)
+        return self.schema(exclude=self.schema.EXCLUDE_FOR_DUMP).dump(user)
 
     def patch(self):
         pass
 
-    def delete(self):
-        pass
+    def delete(self, pk):
+        user = User.query.get_or_404(pk)
+        super().delete(user)
+        return "", HTTPStatus.NO_CONTENT
 
 
 class UserCreateResource(Resource, UserMixin, CRUDMixin):

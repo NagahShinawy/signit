@@ -26,7 +26,3 @@ class User(db.Model, CRUDMixin):
 
     def __repr__(self):
         return f"<User {self.username}>"
-
-    @property
-    def fullname(self):
-        return f"{self.first_name} {self.last_name}".title()

@@ -13,5 +13,5 @@ from profiles.api.v1.resources import (
 blueprint = Blueprint("api", __name__, url_prefix="/api/v1")
 api = Api(blueprint)
 
-api.add_resource(UserResource, "/users/<int:_id>/")
+api.add_resource(UserResource, "/users/<int:pk>/")
 api.add_resource(UserCreateResource, "/user/")
