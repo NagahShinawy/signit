@@ -27,8 +27,15 @@ class UserResource(Resource, UserMixin, CRUDMixin):
         logger.info(f"user '%s' found", user)
         return self.schema(exclude=self.schema.EXCLUDE_FOR_DUMP).dump(user)
 
-    def patch(self):
-        pass
+    def patch(self, pk):
+        user = User.query.get_or_404(pk)
+        json_data = utils.get_json_from_request(request)
+        try:
+            user = self.schema().load(json_data, instance=user, partial=True)
+        except ValidationError as errors:
+            logger.error(f"bad params [%s]", errors.messages)
+            return {"errors": errors.messages}, HTTPStatus.BAD_REQUEST
+        return self.schema(exclude=self.schema.EXCLUDE_FOR_DUMP).dump(user)
 
     def delete(self, pk):
         user = User.query.get_or_404(pk)
