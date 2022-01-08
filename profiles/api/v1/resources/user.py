@@ -13,6 +13,9 @@ from profiles.config.logs import logger
 
 
 class UserMixin:
+    """
+    share between user resources
+    """
     model = User
     schema = UserSchema
 
@@ -23,11 +26,21 @@ class UserResource(Resource, UserMixin, CRUDMixin):
     """
 
     def get(self, pk):
+        """
+        get single user
+        :param pk: pk for single user
+        :return: user obj or 404
+        """
         user = self.model.query.get_or_404(pk)
         logger.info(f"user '%s' found", user)
         return self.schema(exclude=self.schema.EXCLUDE_FOR_DUMP).dump(user)
 
     def patch(self, pk):
+        """
+        update user data
+        :param pk: pk for single user
+        :return: update user obj
+        """
         user = User.query.get_or_404(pk)
         json_data = utils.get_json_from_request(request)
         try:
@@ -40,6 +53,11 @@ class UserResource(Resource, UserMixin, CRUDMixin):
         return self.schema(exclude=self.schema.EXCLUDE_FOR_DUMP).dump(user)
 
     def delete(self, pk):
+        """
+
+        :param pk: pk for single user
+        :return: delete user or 404
+        """
         user = User.query.get_or_404(pk)
         logger.info(f"user '%s' found", user)
         super().delete(user)
@@ -53,6 +71,10 @@ class UserCreateResource(Resource, UserMixin, CRUDMixin):
     """
 
     def post(self):
+        """
+        create new user
+        :return:
+        """
         json_data = utils.get_json_from_request(request)
         logger.info(f"getting data %s", json_data)
         try:
