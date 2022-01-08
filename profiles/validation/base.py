@@ -22,4 +22,4 @@ class PasswordValidator(validate.Regexp):
 
 
 class FullNameValidator(validate.Regexp):
-    default_message = "fullname must contains at least 4 letters and 30 max letters"
+    default_message = "invalid fullname.Only letters with spaces"
