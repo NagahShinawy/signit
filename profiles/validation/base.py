@@ -1,6 +1,7 @@
 """
 data validation
 """
+
 from sqlalchemy import func
 from profiles.models import User
 from marshmallow import ValidationError, validate

@@ -2,7 +2,7 @@
 handle user scheme
 """
 from marshmallow import fields
-from profiles.commons.validation import EmailAlreadyExistValidator, FullNameValidator, PasswordValidator
+from profiles.validation import EmailAlreadyExistValidator, FullNameValidator, PasswordValidator
 from profiles.extensions import ma
 from profiles.models import User
 from profiles.extensions import db
