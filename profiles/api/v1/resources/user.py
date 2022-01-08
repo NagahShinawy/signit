@@ -35,6 +35,8 @@ class UserResource(Resource, UserMixin, CRUDMixin):
         except ValidationError as errors:
             logger.error(f"bad params [%s]", errors.messages)
             return {"errors": errors.messages}, HTTPStatus.BAD_REQUEST
+        self.add(user)
+        logger.info(f"user '%s' saved successfully", user)
         return self.schema(exclude=self.schema.EXCLUDE_FOR_DUMP).dump(user)
 
     def delete(self, pk):
