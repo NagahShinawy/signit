@@ -23,3 +23,14 @@ class PasswordValidator(validate.Regexp):
 
 class FullNameValidator(validate.Regexp):
     default_message = "invalid fullname.Only letters with spaces"
+
+
+class FullNameLengthValidator(validate.Validator):
+    MIN = 5
+    MAX = 50
+    default_message = f"fullname length in between {MIN} and {MAX}"
+
+    def __call__(self, value):
+        if len(value) in range(self.MIN, self.MAX):
+            return value
+        raise ValidationError(self.default_message)
