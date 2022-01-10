@@ -1,7 +1,8 @@
 import json
+
+from profiles.commons.utils import read_from_file
 from profiles.extensions import db
 from profiles.models import User
-from profiles.commons.utils import read_from_file
 
 
 def users_factory(root):

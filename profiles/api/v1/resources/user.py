@@ -2,20 +2,23 @@
 user resources
 """
 from http import HTTPStatus
+
 from flask import request
 from flask_restful import Resource
 from marshmallow import ValidationError
+
 from profiles.api.v1.schemas import UserSchema
 from profiles.commons import utils
 from profiles.commons.crud import CRUDMixin
-from profiles.models import User
 from profiles.config.logs import logger
+from profiles.models import User
 
 
 class UserMixin:
     """
     share between user resources
     """
+
     model = User
     schema = UserSchema
 

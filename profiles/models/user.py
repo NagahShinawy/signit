@@ -2,8 +2,8 @@
 user model
 """
 
-from profiles.extensions import db, pwd_context
 from profiles.commons.crud import CRUDMixin
+from profiles.extensions import db, pwd_context
 
 
 class User(db.Model, CRUDMixin):

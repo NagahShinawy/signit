@@ -2,16 +2,13 @@
 handle user scheme
 """
 from marshmallow import fields
-from profiles.validation import (
-    EmailAlreadyExistValidator,
-    FullNameValidator,
-    FullNameLengthValidator,
-    PasswordValidator,
-)
-from profiles.extensions import ma
-from profiles.models import User
-from profiles.extensions import db
+
 from profiles.commons import constants
+from profiles.extensions import db, ma
+from profiles.models import User
+from profiles.validation import (EmailAlreadyExistValidator,
+                                 FullNameLengthValidator, FullNameValidator,
+                                 PasswordValidator)
 
 
 class UserSchema(ma.SQLAlchemyAutoSchema):

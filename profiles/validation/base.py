@@ -2,9 +2,10 @@
 data validation
 """
 
-from sqlalchemy import func
-from profiles.models import User
 from marshmallow import ValidationError, validate
+from sqlalchemy import func
+
+from profiles.models import User
 
 
 class EmailAlreadyExistValidator(validate.Email):

@@ -4,9 +4,9 @@ init app configuration
 
 from flask import Flask
 
-from profiles.extensions import db, migrate
 from profiles.api.v1 import views as v1_views
 from profiles.config import SQLALCHEMY_DATABASE_URI
+from profiles.extensions import db, migrate
 
 
 def create_app():

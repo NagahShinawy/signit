@@ -1,10 +1,13 @@
 import os
 from functools import partial
+
 import flask
 import pytest
-from profiles.extensions import db as _db
-from .factories import users_factory
+
 from profiles.app import create_app
+from profiles.extensions import db as _db
+
+from .factories import users_factory
 
 
 @pytest.fixture(scope="session")

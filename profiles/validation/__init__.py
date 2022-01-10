@@ -1,10 +1,5 @@
-from .base import (
-    EmailAlreadyExistValidator,
-    PasswordValidator,
-    FullNameValidator,
-    FullNameLengthValidator,
-)
-
+from .base import (EmailAlreadyExistValidator, FullNameLengthValidator,
+                   FullNameValidator, PasswordValidator)
 
 __all__ = [
     "EmailAlreadyExistValidator",
