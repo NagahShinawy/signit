@@ -23,7 +23,7 @@ ch.setFormatter(format_)
 logger.addHandler(ch)
 
 # for file logging [file handler fh]
-fh = handlers.RotatingFileHandler("logs.log", maxBytes=(1048576 * 5), backupCount=7)
-fh.setFormatter(format_)
-logger.addHandler(fh)
+# fh = handlers.RotatingFileHandler("logs.log", maxBytes=(1048576 * 5), backupCount=7)
+# fh.setFormatter(format_)
+# logger.addHandler(fh)
 
