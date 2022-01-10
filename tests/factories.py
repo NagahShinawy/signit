@@ -6,7 +6,7 @@ from profiles.models import User
 
 
 def users_factory(root):
-    users_data = json.loads(read_from_file(root("../tests", "fixtures", "users.json")))
+    users_data = json.loads(read_from_file(root("tests", "fixtures", "users.json")))
     list_of_users = [User(**user) for user in users_data]
     db.session.add_all(list_of_users)
     db.session.commit()
